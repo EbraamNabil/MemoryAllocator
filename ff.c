@@ -5,46 +5,6 @@
 #include <string.h>
 #define MAX_ID_NUMBER 100
 
-//TODO:add a wait queue for processes that don't fit into memory
-//TODO: if two adjacent of memory are free, they are merged into one whole
-//TODO: refactor repeated code into a function
-//TODO: Compact and Release function
-
-// 1. Request for a contiguous block of memory
-// 2. Release of a contiguous block of memory
-// 3. Compact unused holes of memory into one single block
-// 4. Report the regions of free and allocated memory
-
-/**
- * 
- * First fit. Allocate the first hole that is big enough. 
- * Searching can start either at the beginning of the set 
- * of holes or at the location where the previous first-fit 
- * search ended. We can stop searching as soon as we find a free hole that is large enough.
- * 
- * Best fit. Allocate the smallest hole that is big enough. 
- * We must search the entire list, unless the list is ordered by size. 
- * This strategy produces the smallest leftover hole.
- * 
- * Worst fit. Allocate the largest hole. 
- * Again, we must search the entire list, unless it is sorted by size. 
- * This strategy produces the largest leftover hole, which may be more useful
- * than the smaller leftover hole from a best-fit approach. 
- * 
- * 
- * Code play by play:
- * 
- * The head node keeps track on the total avaliable space in memory,and is a dummy node
- * The block_of_space servers as the block of inital free space
- * The temp node help us traverse through the linkedlist
- * 
- * If a new process has space to fit inside a fragmented space and there are address spaces left over
- * after inserting, a new node is created taking up the left over address spaces 
- * and initalized as unused space
- * 
- * If two free spaces are adjacent to each other they are merged together into one node / block of space
- * 
- * **/
 
 struct Node *head;           //dummy node keeps track of avaliable main memory
 struct Node *block_of_space; //initial block of main memory
@@ -333,7 +293,7 @@ int main(int argc, char *argv[])
         {
             status_report();
         }
-        else //the command is not reconiged
+        else 
         {
             printf("This command is not recognized, try again\n");
         }
@@ -348,4 +308,4 @@ int main(int argc, char *argv[])
     }
 }
 
-//Sparky's Projectgit init
+
